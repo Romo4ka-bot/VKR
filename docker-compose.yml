@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  prediction-app:
+    build:
+      context: ./
+      dockerfile: Prediction/Dockerfile
+    container_name: prediction-app
+    image: prediction
+    depends_on:
+      - postgres
+      - authorization-app
+    ports:
+      - 8000
+    networks:
+      - vkr-network
+    command: bash -c "uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    env_file:
+      - Prediction/.env
+    volumes:
+      - .:/app
+  authorization-app:
+    container_name: authorization-app
+    image: authorization
+    build:
+      context: ./
+      dockerfile: Authorization/Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/vkr
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      SERVER_URL: localhost
+      SERVER_HOST: localhost:8080
+      PORT: 8080
+    restart: always
+    networks:
+      - vkr-network
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: vkr
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - vkr-network
+      
+volumes:
+  db:
+
+networks:
+  vkr-network:

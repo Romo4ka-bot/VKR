@@ -1,0 +1,9 @@
+setup.py
+app/__init__.py
+app/handler.py
+app/main.py
+prediction_app.egg-info/PKG-INFO
+prediction_app.egg-info/SOURCES.txt
+prediction_app.egg-info/dependency_links.txt
+prediction_app.egg-info/requires.txt
+prediction_app.egg-info/top_level.txt
