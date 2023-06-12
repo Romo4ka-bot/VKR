@@ -20,7 +20,7 @@
             </div>
             <div class="new__movies-body">
                 <div class="view__more-block">
-                    <a href="/health" class="view__more-btn">Проверить мое здоровье</a>
+                    <a href="/health?predict=0" class="view__more-btn">Проверить мое здоровье</a>
                 </div>
             </div>
         </div>

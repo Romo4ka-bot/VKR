@@ -14,9 +14,6 @@ import ru.kpfu.itis.service.HealthAnalyzerService;
 import ru.kpfu.itis.service.UserPredictionService;
 
 import javax.validation.Valid;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/analyze")
@@ -33,39 +30,18 @@ public class HealthAnalyzerController {
 
     @PostMapping("/users/{userId}")
     public String analyzeUser(@PathVariable Long userId, @Valid UserAnalyzeForm userAnalyzeForm, BindingResult bindingResult, Model model) {
+        UserPredictionDTO predict = new UserPredictionDTO();
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("userAnalyzeForm", userAnalyzeForm);
         } else {
 
-            System.out.println(userAnalyzeForm.toString());
-            UserPredictionDTO predict = healthAnalyzerService.predict(userAnalyzeForm, userId);
-            model.addAttribute("predict", predict);
-
-            List<UserPredictionDTO> userPredictionDTOS = userPredictionService.getAllByUserId(userId);
-            List<Integer> listOfTotalCholesterol = new ArrayList<>();
-            List<String> listOfDates = new ArrayList<>();
-
-            for (UserPredictionDTO userPredictionDTO : userPredictionDTOS) {
-                listOfTotalCholesterol.add(userPredictionDTO.getTotalCholesterol());
-                listOfDates.add(userPredictionDTO.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            }
-
-            for (UserPredictionDTO userPredictionDTO : userPredictionDTOS) {
-                System.out.println(userPredictionDTO);
-            }
-            System.out.println();
-            for (Integer userPredictionDTO : listOfTotalCholesterol) {
-                System.out.println(userPredictionDTO);
-            }
-            System.out.println();
-            for (String userPredictionDTO : listOfDates) {
-                System.out.println(userPredictionDTO);
-            }
-
-            model.addAttribute("listOfTotalCholesterol", listOfTotalCholesterol);
-            model.addAttribute("listOfDates", listOfDates);
+            System.out.println(1);
+            predict = healthAnalyzerService.predict(userAnalyzeForm, userId);
         }
-        return "myHealth";
+
+        System.out.println(2);
+        return "redirect:/health?predict=" + Float.parseFloat(String.format("%.2f", predict.getTotalCholesterol()));
     }
 
     @GetMapping("/users/{userId}")

@@ -9,6 +9,7 @@ import ru.kpfu.itis.repository.UserPredictionRepository;
 import ru.kpfu.itis.service.UserPredictionService;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,11 +27,13 @@ public class UserPredictionServiceImpl implements UserPredictionService {
 
     @Override
     public void saveUserPrediction(UserPredictionDTO userPredictionDTO) {
-        userPredictionRepository.save(modelMapper.map(userPredictionDTO, UserPrediction.class));
+        UserPrediction userPrediction = modelMapper.map(userPredictionDTO, UserPrediction.class);
+        userPrediction.setId(null);
+        userPredictionRepository.save(userPrediction);
     }
 
     @Override
     public List<UserPredictionDTO> getAllByUserId(Long userId) {
-        return userPredictionRepository.findFirst5ByUserId(userId).stream().map(prediction -> modelMapper.map(prediction, UserPredictionDTO.class)).collect(Collectors.toList());
+        return userPredictionRepository.findFirst5ByUserIdOrderByIdDesc(userId).stream().sorted(Comparator.comparingLong(UserPrediction::getId)).map(prediction -> modelMapper.map(prediction, UserPredictionDTO.class)).collect(Collectors.toList());
     }
 }

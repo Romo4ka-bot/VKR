@@ -10,4 +10,9 @@ public class StaticPagesController {
     public String getLoginOrSignUpPage() {
         return "login";
     }
+
+    @GetMapping("/about")
+    public String getAboutPage() {
+        return "about";
+    }
 }

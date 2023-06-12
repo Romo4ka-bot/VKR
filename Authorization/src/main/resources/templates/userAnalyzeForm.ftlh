@@ -60,7 +60,7 @@
                            value="No">
                 </div>
                 <div class="input__group1">
-                    <label for="option2" class="label__group">Раньше курил</label><br>
+                    <label for="option2" class="label__group">Раньше курил(a)</label><br>
                     <input class="input__field1" type="radio" id="option2" name="smokingStatus"
                            value="Previously">
                 </div>

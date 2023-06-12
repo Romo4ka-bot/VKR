@@ -302,7 +302,7 @@
     </button>
     <ul class="nav">
         <li class="nav__link"><a href="/" class="nav__link-item">Домашняя</a></li>
-        <li class="nav__link"><a href="/health" class="nav__link-item">Мое здоровье</a></li>
+        <li class="nav__link"><a href="/health?predict=0" class="nav__link-item">Мое здоровье</a></li>
         <li class="nav__link"><a href="/about" class="nav__link-item">О нас</a></li>
     </ul>
 </div>
@@ -323,11 +323,15 @@
     <div class="chart-container">
         <canvas id="myChart"></canvas>
     </div>
+    <div class="no__predictions">
+        <#if noPredictions??>${noPredictions}</#if>
+        <#if modelNotCreated??>${modelNotCreated}</#if>
+    </div>
     <div class="new__movies-inner">
         <div class="new__movies-body">
             <div><#if predict??>
                     <h3 class="cholesterol__title">Ваш уровень холестерина:</h3>
-                    <h1 class="cholesterol__title1">${predict.totalCholesterol} ммоль/л</h1>
+                    <h1 class="cholesterol__title1">${predict} ммоль/л</h1>
                 </#if></div>
             <div class="view__more-block">
                 <form action="/analyze/users/<#if user??>${user.id}</#if>" method="get">
@@ -349,12 +353,12 @@
 </footer>
 </div>
 <script>
-    var listOfTotalCholesterol = '<#list listOfTotalCholesterol as totalCholesterol>${totalCholesterol},</#list>'
+    var listOfTotalCholesterol = '<#list listOfTotalCholesterol as totalCholesterol>${totalCholesterol}/</#list>'
     listOfTotalCholesterol = listOfTotalCholesterol.slice(0, listOfTotalCholesterol.length - 1)
+    listOfTotalCholesterol = listOfTotalCholesterol.replaceAll(',', '.')
+    listOfTotalCholesterol = listOfTotalCholesterol.replaceAll('/', ',')
     var listOfDates = '<#list listOfDates as date>${date},</#list>'
     listOfDates = listOfDates.slice(0, listOfDates.length - 1)
-    console.log(listOfTotalCholesterol)
-    console.log(listOfDates)
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',

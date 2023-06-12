@@ -6,5 +6,5 @@ import ru.kpfu.itis.entity.UserPrediction;
 import java.util.List;
 
 public interface UserPredictionRepository extends JpaRepository<UserPrediction, Long> {
-    List<UserPrediction> findFirst5ByUserId(Long userId);
+    List<UserPrediction> findFirst5ByUserIdOrderByIdDesc(Long userId);
 }

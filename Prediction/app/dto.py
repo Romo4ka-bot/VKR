@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
@@ -17,6 +19,7 @@ class HealthForm(BaseModel):
     bmi: int
     age: int
     userId: int
+    startDate: str
 
     class Config:
         orm_mode = True

@@ -22,6 +22,8 @@ def predict(X_new: pd.DataFrame):
                      'Date Last Contact CVRM',
                      'Total Cholesterol, last measurement date']
 
+    print(X_new)
+
     # Инициализируйте объект пайплайна
     pipeline = CatBoostPipeline(categorical_features=categorical_features,
                                 numerical_features=numerical_features,

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -15,7 +15,12 @@ import java.time.LocalDateTime;
 public class UserPredictionDTO implements Serializable {
 
     private static final long serialVersionUID = -4862926644813433707L;
-    private Integer totalCholesterol;
-    private LocalDateTime createdAt;
+
+    private Float totalCholesterol;
+    private LocalDate createdAt;
     private Long userId;
+
+    public UserPredictionDTO(Float totalCholesterol) {
+        this.totalCholesterol = totalCholesterol;
+    }
 }

@@ -305,7 +305,7 @@
             </button>
             <ul class="nav">
                 <li class="nav__link"><a href="/" class="nav__link-item">Домашняя</a></li>
-                <li class="nav__link"><a href="/health" class="nav__link-item">Мое здоровье</a></li>
+                <li class="nav__link"><a href="/health?predict=0" class="nav__link-item">Мое здоровье</a></li>
                 <li class="nav__link"><a href="/about" class="nav__link-item">О нас</a></li>
             </ul>
         </div>

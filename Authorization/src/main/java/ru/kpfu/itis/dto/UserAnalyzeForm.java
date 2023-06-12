@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -51,4 +52,6 @@ public class UserAnalyzeForm {
     private Integer age;
 
     private Long userId;
+
+    private String startDate;
 }

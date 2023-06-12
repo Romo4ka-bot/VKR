@@ -1607,11 +1607,11 @@ html, body {
 }
 
 .about__img {
-    width: 76%;
+    width: 120%%;
     position: absolute;
     top: 0;
     left: 0;
-    background: url("/images/about/library.png") center no-repeat;
+    background: url("/images/about.png") center no-repeat;
     background-size: cover;
     bottom: 0;
 }
@@ -1623,6 +1623,7 @@ html, body {
     -ms-flex-direction: column;
     flex-direction: column;
     padding: 2rem 0;
+    margin-left: 150px
 }
 
 .about__suptitle {
@@ -3058,4 +3059,11 @@ html, body {
 
 .moderation_reject {
     background-color: #ff6767;
+}
+
+.no__predictions {
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 17px;
 }

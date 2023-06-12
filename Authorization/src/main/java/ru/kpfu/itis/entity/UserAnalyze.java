@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -38,6 +39,7 @@ public class UserAnalyze {
     private Integer diastolicBloodPressure;
     private Integer bmi;
     private Integer age;
+    private LocalDate startDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
