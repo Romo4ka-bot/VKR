@@ -55,7 +55,6 @@ public class HealthAnalyzerServiceImpl implements HealthAnalyzerService {
         ResponseEntity<ModelCreatedDTO> isModelCreatedResponse = restTemplate
                 .exchange(predictionServiceUrl + "/is-created-model", HttpMethod.GET, request, ModelCreatedDTO.class);
 
-        System.out.println(Objects.requireNonNull(isModelCreatedResponse.getBody()));
         if (isModelCreatedResponse.getBody().getStatusModelCreated().equals("True")) {
             ResponseEntity<UserPredictionDTO> predictResponse = restTemplate
                     .exchange(predictionServiceUrl + "/predict", HttpMethod.POST, request, UserPredictionDTO.class);
@@ -70,7 +69,6 @@ public class HealthAnalyzerServiceImpl implements HealthAnalyzerService {
             userPredictionDTO.setCreatedAt(LocalDate.now());
             userPredictionService.saveUserPrediction(userPredictionDTO);
 
-            System.out.println(3);
             return userPredictionDTO;
 
         } else {

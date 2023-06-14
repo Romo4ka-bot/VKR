@@ -35,12 +35,9 @@ public class HealthAnalyzerController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("userAnalyzeForm", userAnalyzeForm);
         } else {
-
-            System.out.println(1);
             predict = healthAnalyzerService.predict(userAnalyzeForm, userId);
         }
 
-        System.out.println(2);
         return "redirect:/health?predict=" + Float.parseFloat(String.format("%.2f", predict.getTotalCholesterol()));
     }
 

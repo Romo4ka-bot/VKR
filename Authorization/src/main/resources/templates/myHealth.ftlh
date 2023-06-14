@@ -320,6 +320,7 @@
 <#--    </section>-->
 
 <section class="new__movies1">
+    <h3 class="cholesterol__title">Ваши предыдущие резутаты:</h3>
     <div class="chart-container">
         <canvas id="myChart"></canvas>
     </div>
